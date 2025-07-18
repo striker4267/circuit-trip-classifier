@@ -13,7 +13,24 @@ def load_model(model_path):
           tokeniser = AutoTokenizer.from_pretrained(model_path)
           model = AutoModelForSequenceClassification.from_pretrained(model_path)
 
-          device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+              # 1. Check for NVIDIA CUDA
+          if torch.cuda.is_available():
+          # Differentiate between NVIDIA and AMD
+               if "NVIDIA" in torch.cuda.get_device_name(0):
+                    print("NVIDIA CUDA GPU found.")
+                    device =  torch.device("cuda")
+               # 2. Check for AMD ROCm
+               # PyTorch uses the CUDA interface for ROCm, so we check the device name
+               if "AMD" in torch.cuda.get_device_name(0):
+                    print("AMD ROCm GPU found.")
+                    device =  torch.device("cuda") # ROCm uses the 'cuda' device identifier in PyTorch
+               
+          # 3. Check for Apple Silicon (M1/M2/M3) MPS
+          # Note: torch.backends.mps.is_available() is the correct check for recent PyTorch versions
+          if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+               print("Apple Silicon GPU (MPS) found.")
+               device = torch.device("mps")
+
           model.to(device)
 
           print(f"Model sucessfully loaded on device; {device}")
