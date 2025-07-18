@@ -1,0 +1,10 @@
+Core ML & Data Handling Libraries
+torch
+transformers
+pandas
+scikit-learn
+openpyxl
+
+Recommended for Jupyter Notebooks
+notebook
+ipykernel
