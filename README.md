@@ -1,20 +1,19 @@
 Automated Classification of Network Rail Circuit Trips
-Author: Matthew Wilson - Omordia
+Author: Matthew Wilson-Omordia
 
-Date: July 2025 
-
+Date: July 2025
 Status: Model Trained & Evaluated
 
-1. How to Use This Tool
-This section provides instructions for setting up the environment and running the prediction application on an Excel file.
+1. How to Use the Prediction Application
+This section provides instructions for setting up the environment and running predictions on an Excel file using the final, trained model.
 
 1.1. Setup & Installation
 This project requires Python 3.9+ and a Conda environment to manage dependencies.
 
 Clone the Repository:
 
-git clone https://github.com/striker4267/circuit-trip-classifier.git
-cd circuit-trip-classifier
+git clone [repository-url]
+cd [repository-name]
 
 Install Git LFS:
 This project uses Git Large File Storage (LFS) to manage the model file. You must install the Git LFS client to download the model correctly.
@@ -38,35 +37,36 @@ pip install -r requirements.txt
 Note: For the best performance, it is highly recommended to run this on a machine with an NVIDIA GPU. The application will automatically use the GPU if available. If not, it will fall back to using the CPU, which will be significantly slower.
 
 1.2. Running Predictions on an Excel File
-The application is designed to read circuit trip descriptions from an Excel file, predict the cause for each one, and write the predictions back into a new column in the same file.
+The application is run from the command line and takes the path to an Excel file as input. It reads the descriptions, predicts the cause for each one, and saves the results to a new file with _predicted added to the name.
 
-Configure the Input File:
+Prepare Your Command:
 
-Navigate to the src/Prediction App/ directory.
+Open your terminal (e.g., Anaconda Prompt).
 
-Open the main.py script in a text editor.
+Navigate to the application directory:
 
-Modify the excel_path and sheet_name variables to point to your target Excel file and the correct sheet.
+cd "src/Prediction App"
 
-# In main.py
-excel_path = "path/to/your/data.xlsx"
-sheet_name = "YourSheetName"
-
-Important: The Excel file must contain a column named "Action" with the text descriptions to be classified.
+You will run the application using the format:
+python main.py [path_to_your_excel_file]
 
 Run the Application:
 
-From your terminal, make sure you are in the src/Prediction App/ directory.
+Execute the command, replacing the placeholder with the actual path to your file. For example:
 
-Execute the main script:
+python main.py "C:\Users\YourUser\Documents\Trip_Data.xlsx"
 
-python main.py
+If your data is not on "Sheet1", you can specify the sheet name:
+
+python main.py "C:\Users\YourUser\Documents\Trip_Data.xlsx" --sheet_name "MyDataSheet"
+
+Important: The Excel file must contain a column named "Action" with the text descriptions to be classified.
 
 Check the Results:
 
-The script will process all the rows and then save the results.
+The script will process all the rows and save the results.
 
-Open your original Excel file. A new column named "Predicted Cause" will have been added next to the original "Cause" column, containing the model's predictions.
+In the same folder as your original Excel file, you will find a new file named Trip_Data_predicted.xlsx. This file contains all the original data plus a new "Predicted Cause" column.
 
 2. Project Summary
 This project addresses the challenge of manually categorizing free-text descriptions of Network Rail circuit trips. By leveraging Natural Language Processing (NLP), this repository provides a complete pipeline to clean, augment, and classify raw trip data into one of 22 consolidated fault categories.
