@@ -54,7 +54,7 @@ cd [repository-name]
     ```bash
     pip install -r requirements.txt
     ```
-    > **Performance Note:** For the best performance, it is highly recommended to run this on a machine with an NVIDIA GPU. The application will automatically use the GPU if available. If not, it will fall back to using the CPU, which will be significantly slower.
+    > **Performance Note:** For the best performance, it is highly recommended to run this on a machine with an GPU. The application will automatically use the GPU if available. If not, it will fall back to using the CPU, which will be significantly slower.
 
 ### 1.2. Running Predictions on an Excel File
 
