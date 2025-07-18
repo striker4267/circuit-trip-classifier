@@ -23,16 +23,16 @@ This section provides instructions for setting up the environment and running pr
 
 ### 1.1. Setup & Installation
 
-git clone https://github.com/striker4267/circuit-trip-classifier.git
-cd circuit-trip-classifier
+git clone [repository-url]
+cd [repository-name]
 
 > **Note:** This project requires Python 3.9+ and a Conda environment to manage dependencies and ensure reproducibility.
 
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [repository-url]
-    cd [repository-name]
+    git clone https://github.com/striker4267/circuit-trip-classifier.git
+    cd circuit-trip-classifier
     ```
 
 2.  **Install Git LFS:**
